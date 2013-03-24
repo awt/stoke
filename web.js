@@ -6,8 +6,9 @@ var server = http.createServer(app);
 
 require('jade');
 app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/public'));
 
-routes = require('./routes');
+routes = require('./express/routes');
 app.get('/', routes.index);
 
 // Server Listen
