@@ -1,4 +1,7 @@
+//noteworthy asset pipeline lib: https://github.com/jriecken/asset-smasher
+
 module.exports = function(grunt) {
+  var yaml = require('js-yaml');
   var path = require('path');
   var root = path.normalize(__dirname+"/application/");
   var lib = root + "lib/"
@@ -19,6 +22,7 @@ module.exports = function(grunt) {
           lib + 'app_def.js', 
           root + 'routes/**/*.js', 
           root + 'models/**/*.js', 
+          root + 'views/**/*.js', 
           root + 'controllers/**/*.js'],
           dest: 'public/javascript/application.js'
       } 
@@ -36,7 +40,11 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', 'concat min');
+  grunt.registerTask('generate_manifest', function(){
+    var manifest = yaml.dump({file1 : 'file1alkdfj.js'});
+    grunt.file.write('public/manifest.yml', manifest);
+  });
+  grunt.registerTask('default', 'concat min generate_manifest');
 
 
 };

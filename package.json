@@ -9,7 +9,7 @@
     "grunt" : "0.3.17",
     "express": "3.0.4",
     "less-middleware": "~0.1.9",
-    "js-yaml": "~1.0.3",
+    "js-yaml": "~2.0.3",
     "jade": "~0.27.7",
     "express-logger": "0.0.2"
   },

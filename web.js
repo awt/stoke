@@ -5,6 +5,7 @@ var http = require('http');
 var server = http.createServer(app);
 
 require('jade');
+app.set('views', __dirname + '/express/views');
 app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
