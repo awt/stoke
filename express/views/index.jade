@@ -4,6 +4,6 @@ html
     title Game Table
   body
     if process.env.NODE_ENV == 'production'
-      script(src='/javascript/application.min.js')
+      !=asset({type: 'script', src: '/javascript/application.min.js'})
     else
-      script(src='/javascript/application.js')
+      !=asset({type: 'script', src: '/javascript/application.js'})
