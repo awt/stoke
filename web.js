@@ -5,6 +5,8 @@ var http = require('http');
 var manifest = require('./express/lib/manifest.js');
 var server = http.createServer(app);
 var path = require('path');
+var lessMiddleware = require('less-middleware');
+require('jade');
 
 manifest.load(function(manifest){
   console.log(manifest);
@@ -15,8 +17,12 @@ manifest.load(function(manifest){
       var name = path.basename(opts.src);
       var dirname = path.dirname(opts.src);
       var name_with_hash = manifest[name];
+      var full_path_with_hash = dirname + '/' + name_with_hash;
       if('script' == opts.type) {
-        return '<script type="text/javascript" src="' + dirname + '/' + name_with_hash + '"></script>';
+        return '<script type="text/javascript" src="' + full_path_with_hash + '"></script>';
+      }
+      else if('text/css' == opts.type) {
+        return '<link type="text/css" rel="stylesheet" href="' + full_path_with_hash  + '"></link>';
       }
       else {
         throw "Unknown asset type"
@@ -29,9 +35,16 @@ process.on('uncaughtException', function(err) {
     console.log(err);
 });
 
-require('jade');
 app.set('views', __dirname + '/express/views');
 app.set('view engine', 'jade');
+app.use(lessMiddleware({
+  src: __dirname + '/public',
+  compress: true,
+  once: false,
+  force: true,
+  debug: true
+}));
+
 app.use(express.static(__dirname + '/public'));
 
 
