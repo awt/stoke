@@ -5,7 +5,6 @@ var http = require('http');
 var manifest = require('./express/lib/manifest.js');
 var server = http.createServer(app);
 var path = require('path');
-var lessMiddleware = require('less-middleware');
 require('jade');
 
 manifest.load(function(manifest){
@@ -37,13 +36,6 @@ process.on('uncaughtException', function(err) {
 
 app.set('views', __dirname + '/express/views');
 app.set('view engine', 'jade');
-app.use(lessMiddleware({
-  src: __dirname + '/public',
-  compress: true,
-  once: false,
-  force: true,
-  debug: true
-}));
 
 app.use(express.static(__dirname + '/public'));
 
