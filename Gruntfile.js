@@ -60,11 +60,30 @@ module.exports = function(grunt) {
     generate_manifest: {
       paths: [javascript + 'application.js', 
               javascript + 'application.min.js'] 
+    },
+    less: {
+      development: {
+        options: {
+        },
+        files: {
+          "public/stylesheets/application.css" : "assets/stylesheets/application.less"
+        }
+      },
+      production: {
+        options: {
+          yuicompress: true,
+        },
+        files: {
+          "public/stylesheets/application.css" : "assets/stylesheets/application.less"
+        }
+      }
     }
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.registerMultiTask('generate_manifest', "Generate md5 manifest", function(){
     if(this.target == 'paths') {
       var manifest = {};
@@ -77,5 +96,5 @@ module.exports = function(grunt) {
       grunt.file.write(manifest_path, yaml.dump(manifest));
     }
   });
-  grunt.registerTask('default', ['concat', 'uglify', 'generate_manifest']);
+  grunt.registerTask('default', ['concat', 'uglify', 'less:production', 'generate_manifest']);
 };
