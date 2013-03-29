@@ -13,6 +13,7 @@ module.exports = function(grunt) {
   var root = path.normalize(__dirname + "/");
   var lib = root + "lib/"
   var javascript = root + "public/javascript/"
+  var stylesheets = root + "public/stylesheets/"
   var manifest_path = root + 'public/manifest.yml'
   
   var generateNameWithHash = function(path) {
@@ -59,11 +60,13 @@ module.exports = function(grunt) {
     },
     generate_manifest: {
       paths: [javascript + 'application.js', 
-              javascript + 'application.min.js'] 
+              javascript + 'application.min.js',
+              stylesheets + 'application.css'] 
     },
     less: {
       development: {
         options: {
+          paths: ["assets/stylesheets"]
         },
         files: {
           "public/stylesheets/application.css" : "assets/stylesheets/application.less"
@@ -71,6 +74,7 @@ module.exports = function(grunt) {
       },
       production: {
         options: {
+          paths: ["assets/stylesheets"],
           yuicompress: true,
         },
         files: {

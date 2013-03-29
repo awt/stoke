@@ -21,7 +21,7 @@ manifest.load(function(manifest){
       if('script' == opts.type) {
         return '<script type="text/javascript" src="' + full_path_with_hash + '"></script>';
       }
-      else if('text/css' == opts.type) {
+      else if('stylesheet' == opts.type) {
         return '<link type="text/css" rel="stylesheet" href="' + full_path_with_hash  + '"></link>';
       }
       else {

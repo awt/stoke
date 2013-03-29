@@ -3,6 +3,7 @@ html
   head
     title Game Table
   body
+    !=asset({type: 'stylesheet', src: '/stylesheets/application.css'});
     if process.env.NODE_ENV == 'production'
       !=asset({type: 'script', src: '/javascript/application.min.js'})
     else
