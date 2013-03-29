@@ -16,7 +16,8 @@
     "grunt-contrib-concat": "~0.1.3",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-cli": "~0.1.6",
-    "public": "https://github.com/awt/grunt-contrib-less/tarball/master"
+    "public": "https://github.com/awt/grunt-contrib-less/tarball/master",
+    "grunt-ember-templates": "~0.4.3"
   },
   "scripts": {
     "postinstall": "node_modules/grunt-cli/bin/grunt"

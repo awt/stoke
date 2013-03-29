@@ -11,7 +11,8 @@ module.exports = function(grunt) {
   var yaml = require('js-yaml');
   var path = require('path');
   var root = path.normalize(__dirname + "/");
-  var lib = root + "lib/"
+  var lib = root + "lib/";
+  var tmp = root + "tmp/";
   var javascript = root + "public/javascript/"
   var stylesheets = root + "public/stylesheets/"
   var manifest_path = root + 'public/manifest.yml'
@@ -27,6 +28,10 @@ module.exports = function(grunt) {
   };
 
   grunt.loadNpmTasks('grunt-ember-templates');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-less');
+
   //     Project configuration.
   grunt.initConfig({
     lint: {
@@ -40,6 +45,7 @@ module.exports = function(grunt) {
           lib + 'ember.js',
           lib + 'bind.js',
           lib + 'app_def.js', 
+          tmp + 'templates.js',
           root + 'routes/**/*.js', 
           root + 'models/**/*.js', 
           root + 'views/**/*.js', 
@@ -81,13 +87,20 @@ module.exports = function(grunt) {
           "public/stylesheets/application.css" : "assets/stylesheets/application.less"
         }
       }
-    }
+    },
+    ember_templates: {
+      compile: {
+        options: {
+          templateName: function(sourceFile) {
+            return sourceFile.replace(lib, '');
+          }
+        },
+        files: {
+          "tmp/templates.js" : [root + "templates/*.handlebars"]
+        }
+      }
+    }});
 
-  });
-
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.registerMultiTask('generate_manifest', "Generate md5 manifest", function(){
     if(this.target == 'paths') {
       var manifest = {};
@@ -100,5 +113,5 @@ module.exports = function(grunt) {
       grunt.file.write(manifest_path, yaml.dump(manifest));
     }
   });
-  grunt.registerTask('default', ['concat', 'uglify', 'less:production', 'generate_manifest']);
+  grunt.registerTask('default', ['ember_templates', 'concat', 'uglify', 'less:production', 'generate_manifest']);
 };

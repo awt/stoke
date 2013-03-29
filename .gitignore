@@ -1,4 +1,5 @@
 node_modules
-public/javascript/application*
-public/stylesheets/application*
+public/javascript/*
+public/stylesheets/*
 public/manifest.yml
+tmp/*
