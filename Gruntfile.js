@@ -31,6 +31,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   //     Project configuration.
   grunt.initConfig({
@@ -99,15 +100,24 @@ module.exports = function(grunt) {
           "tmp/templates.js" : [root + "templates/*.handlebars"]
         }
       }
-    }});
+    },
+    watch: {
+      javascript_and_stylesheets: {
+        files: [root + 'routes/**/*.js', root + 'models/**/*.js', root + 'views/**/*.js', root + 'controllers/**/*.js', root + 'templates/**/*.handlebars', 'assets/stylesheets/**/*.less'],
+        tasks: ['ember_templates', 'concat', 'less:development', 'generate_manifest']
+      },
+    } 
+  });
 
   grunt.registerMultiTask('generate_manifest', "Generate md5 manifest", function(){
     if(this.target == 'paths') {
       var manifest = {};
       this.data.forEach(function(path){
-        var dest = generateNameWithHash(path);
-        fs.renameSync(path, dest);
-        manifest[fs_path.basename(path)] = fs_path.basename(dest);
+        if(fs.existsSync(path)){
+          var dest = generateNameWithHash(path);
+          fs.renameSync(path, dest);
+          manifest[fs_path.basename(path)] = fs_path.basename(dest);
+        }
       });
       console.log("Writing manifest to " + manifest_path);
       grunt.file.write(manifest_path, yaml.dump(manifest));
