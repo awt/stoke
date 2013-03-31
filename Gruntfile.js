@@ -32,6 +32,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   //     Project configuration.
   grunt.initConfig({
@@ -42,9 +43,12 @@ module.exports = function(grunt) {
       dist: {
         src: [
           lib + 'jquery.js',
+          lib + 'jquery-ui-1.10.1.custom.min.js',
+          lib + 'jquery.mousewheel.js',
           lib + 'handlebars.js',
           lib + 'ember.js',
           lib + 'bind.js',
+          root + "vendor/**/*.js",
           lib + 'app_def.js', 
           tmp + 'templates.js',
           root + 'routes/**/*.js', 
@@ -103,10 +107,19 @@ module.exports = function(grunt) {
     },
     watch: {
       javascript_and_stylesheets: {
-        files: [root + 'routes/**/*.js', root + 'models/**/*.js', root + 'views/**/*.js', root + 'controllers/**/*.js', root + 'templates/**/*.handlebars', 'assets/stylesheets/**/*.less'],
-        tasks: ['ember_templates', 'concat', 'less:development', 'generate_manifest']
-      },
-    } 
+        files: ['Gruntfile.js', 
+                root + 'routes/**/*.js', 
+                root + 'models/**/*.js', 
+                root + 'views/**/*.js', 
+                root + 'controllers/**/*.js', 
+                root + 'templates/**/*.handlebars', 
+                'assets/stylesheets/**/*.less'],
+        tasks: ['clean', 'ember_templates', 'concat', 'less:development', 'generate_manifest']
+      }
+    },
+
+    clean: [javascript + "*", stylesheets + "*"]
+       
   });
 
   grunt.registerMultiTask('generate_manifest', "Generate md5 manifest", function(){
