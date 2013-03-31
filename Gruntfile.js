@@ -12,6 +12,7 @@ module.exports = function(grunt) {
   var path = require('path');
   var root = path.normalize(__dirname + "/");
   var lib = root + "lib/";
+  var templates = root + 'templates/';
   var tmp = root + "tmp/";
   var javascript = root + "public/javascript/"
   var stylesheets = root + "public/stylesheets/"
@@ -97,7 +98,8 @@ module.exports = function(grunt) {
       compile: {
         options: {
           templateName: function(sourceFile) {
-            return sourceFile.replace(lib, '');
+            console.log("************ this was called!: " + sourceFile.replace(templates, ''));
+            return sourceFile.replace(templates, '');
           }
         },
         files: {
