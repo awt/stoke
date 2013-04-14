@@ -1,8 +1,8 @@
 App.Store = DS.Store.extend({
   revision: 12,
   adapter: ParseAdapter.create({
-    applicationId: {{ applicationId }},
-    restApiId: {{ restApiId }},
-    javascriptId: {{ javascriptId }}
+    applicationId: '{{ applicationId }}',
+    restApiId: '{{ restApiId }}',
+    javascriptId: '{{ javascriptId }}'
   })
 });
