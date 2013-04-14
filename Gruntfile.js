@@ -134,6 +134,15 @@ module.exports = function(grunt) {
           restApiId: process.env.REST_API_ID,
           javascriptId: process.env.JAVASCRIPT_ID
         }
+      },
+      development: {
+        src: 'config/parse_adapter.handlebars',
+        dest: 'config/adapter.js',
+        variables: {
+          applicationId: process.env.APPLICATION_ID,
+          restApiId: process.env.REST_API_ID,
+          javascriptId: process.env.JAVASCRIPT_ID
+        }
       }
     },
 
@@ -155,5 +164,7 @@ module.exports = function(grunt) {
       grunt.file.write(manifest_path, yaml.dump(manifest));
     }
   });
+
+  grunt.registerTask('dev_build', ['ember_templates', 'template:development', 'concat', 'uglify', 'less:development', 'generate_manifest']);
   grunt.registerTask('default', ['ember_templates', 'template:production', 'concat', 'uglify', 'less:production', 'generate_manifest']);
 };
