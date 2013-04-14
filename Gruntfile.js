@@ -165,6 +165,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('dev_build', ['ember_templates', 'template:development', 'concat', 'less:development', 'generate_manifest']);
-  grunt.registerTask('default', ['ember_templates', 'template:production', 'concat', 'uglify', 'less:production', 'generate_manifest']);
+  grunt.registerTask('default', ['ember_templates', 'template:development', 'concat', 'less:development', 'generate_manifest']);
+  grunt.registerTask('production', ['ember_templates', 'template:production', 'concat', 'uglify', 'less:production', 'generate_manifest']);
 };

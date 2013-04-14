@@ -24,7 +24,7 @@
     "handlebars": "~1.0.10"
   },
   "scripts": {
-    "postinstall": "node_modules/grunt-cli/bin/grunt"
+    "postinstall": "node_modules/grunt-cli/bin/grunt production"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.6"
