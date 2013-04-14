@@ -1,4 +1,4 @@
-stoke
+Stoke
 =====
 
 Skeleton for an Ember.js app served by node from Heroku and backed by Parse, Firebase, or other platform services. 
