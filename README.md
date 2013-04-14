@@ -11,7 +11,7 @@ Stoke is a skeleton for Ember.js apps served by node/express from Heroku and bac
 **Getting Started**
 
 1.  grunt
-2.  node web.js
+2.  supervisor -w public/manifest.yml web.js
 3.  grunt watch
 
 **Deploying to Heroku**
@@ -22,5 +22,7 @@ During deployment to Heroku, the production grunt task will be executed.  This w
 2.  Generate a single application-\<hash\>.css file
 3.  Generate an adapter.js file in config from the template specified in the template task in Gruntfile.js
 4.  Generate a manifest.yml file in public that express.js will use to look up the current asset file name given the base name in a template.
+
+**Tips**
 
 Here's a handy way to keep up to date with improvements to the skeleton: [Syncing a Fork](https://help.github.com/articles/syncing-a-fork)
