@@ -2,4 +2,6 @@ node_modules
 public/javascript/*
 public/stylesheets/*
 public/manifest.yml
+config/adapter.js
+init_env.sh
 tmp/*

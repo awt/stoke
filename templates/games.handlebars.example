@@ -1,0 +1,8 @@
+<div>
+  Games
+</div>
+
+
+{{#each game in controller}}
+  {{game.name}}
+{{/each}}

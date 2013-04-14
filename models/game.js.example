@@ -1,0 +1,6 @@
+App.Game = ParseModel.extend({
+  name: DS.attr('string'),
+  description: DS.attr('string'),
+  notes: DS.attr('string'),
+  price: DS.attr('number')
+});

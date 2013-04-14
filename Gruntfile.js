@@ -12,6 +12,7 @@ module.exports = function(grunt) {
   var path = require('path');
   var root = path.normalize(__dirname + "/");
   var lib = root + "lib/";
+  var config = root + "config/";
   var templates = root + 'templates/';
   var tmp = root + "tmp/";
   var javascript = root + "public/javascript/"
@@ -34,6 +35,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-templater');
 
   //     Project configuration.
   grunt.initConfig({
@@ -48,11 +50,14 @@ module.exports = function(grunt) {
           lib + 'jquery.mousewheel.js',
           lib + 'handlebars.js',
           lib + 'ember.js',
+          lib + 'ember-data.js',
+          lib + 'ember-parse-adapter-0.2.2.js',
           lib + 'bind.js',
           root + "vendor/**/*.js",
           lib + 'app_def.js', 
+          config + 'adapter.js',
           tmp + 'templates.js',
-          root + 'routes/**/*.js', 
+          config + 'routes.js', 
           root + 'models/**/*.js', 
           root + 'views/**/*.js', 
           root + 'controllers/**/*.js'],
@@ -98,7 +103,6 @@ module.exports = function(grunt) {
       compile: {
         options: {
           templateName: function(sourceFile) {
-            console.log("************ this was called!: " + sourceFile.replace(templates, ''));
             return sourceFile.replace(templates, '');
           }
         },
@@ -110,13 +114,26 @@ module.exports = function(grunt) {
     watch: {
       javascript_and_stylesheets: {
         files: ['Gruntfile.js', 
+                lib +  'app_def.js',
                 root + 'routes/**/*.js', 
                 root + 'models/**/*.js', 
                 root + 'views/**/*.js', 
                 root + 'controllers/**/*.js', 
                 root + 'templates/**/*.handlebars', 
                 'assets/stylesheets/**/*.less'],
-        tasks: ['clean', 'ember_templates', 'concat', 'less:development', 'generate_manifest']
+        tasks: ['clean', 'ember_templates', 'template', 'concat', 'less:development', 'generate_manifest']
+      }
+    },
+
+    template: {
+      production: {
+        src: 'config/parse_adapter.handlebars',
+        dest: 'config/adapter.js',
+        variables: {
+          applicationId: process.env.APPLICATION_ID,
+          restApiId: process.env.REST_API_ID,
+          javascriptId: process.env.JAVASCRIPT_ID
+        }
       }
     },
 
@@ -138,5 +155,5 @@ module.exports = function(grunt) {
       grunt.file.write(manifest_path, yaml.dump(manifest));
     }
   });
-  grunt.registerTask('default', ['ember_templates', 'concat', 'uglify', 'less:production', 'generate_manifest']);
+  grunt.registerTask('default', ['ember_templates', 'template:production', 'concat', 'uglify', 'less:production', 'generate_manifest']);
 };

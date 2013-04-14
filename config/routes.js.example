@@ -1,0 +1,9 @@
+App.Router.map(function() {
+  this.resource('games');
+});
+
+App.GamesRoute = Ember.Route.extend({
+  model: function(){
+    return App.Game.find();
+  }
+});
