@@ -1,7 +1,7 @@
 Stoke
 =====
 
-Skeleton for an Ember.js app served by node from Heroku and backed by Parse, Firebase, or other platform services. 
+Stoke is a skeleton for Ember.js apps served by node from Heroku and backed by Parse, Firebase, or other platform services. 
 
 Key Features:
 
