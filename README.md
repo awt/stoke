@@ -23,3 +23,4 @@ During deployment to Heroku, the production grunt task will be executed.  This w
 3.  Generate an adapter.js file in config from the template specified in the template task in Gruntfile.js
 4.  Generate a manifest.yml file in public that express.js will use to look up the current asset file name given the base name in a template.
 
+Here's a handy way to keep up to date with improvements to the skeleton: [Syncing a Fork](https://help.github.com/articles/syncing-a-fork)
