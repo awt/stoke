@@ -11,7 +11,7 @@ Stoke is a skeleton for Ember.js apps served by node/express from Heroku and bac
 **Getting Started**
 
 1.  `grunt`
-2.  `supervisor -w public/manifest.yml web.js`
+2.  `supervisor -w public/manifest.yml,web.js -e yml web.js`
 3.  `grunt watch`
 
 **Deploying to Heroku**
