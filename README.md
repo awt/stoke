@@ -16,6 +16,9 @@ Stoke is a skeleton for Ember.js apps served by node/express from Heroku and bac
 
 **Deploying to Heroku**
 
+When you create your heroku app, use the special buildpack required to build js and css during deployment:
+heroku create --buildpack https://github.com/awt/heroku-buildpack-nodejs.git
+
 During deployment to Heroku, the production grunt task will be executed.  This will:
 
 1.  Generate a single application-\<hash\>.min.js file
