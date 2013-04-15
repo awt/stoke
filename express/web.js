@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var logger = require('express-logger');
 var http = require('http');
-var manifest = require('./express/lib/manifest.js');
+var manifest = require(__dirname + '/lib/manifest.js');
 var server = http.createServer(app);
 var path = require('path');
 require('jade');
@@ -40,7 +40,7 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
 
-routes = require('./express/routes');
+routes = require(__dirname + '/routes');
 app.get('/', routes.index);
 
 // Server Listen
