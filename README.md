@@ -10,19 +10,19 @@ Stoke is a skeleton for Ember.js apps served by node/express from Heroku and bac
 
 **Getting Started**
 
-1.  grunt
-2.  supervisor -w public/manifest.yml web.js
-3.  grunt watch
+1.  `grunt`
+2.  `supervisor -w public/manifest.yml web.js`
+3.  `grunt watch`
 
 **Deploying to Heroku**
 
 When you create your heroku app, use the special buildpack required to build js and css during deployment:
 
-heroku create --buildpack https://github.com/awt/heroku-buildpack-nodejs.git
+`heroku create --buildpack https://github.com/awt/heroku-buildpack-nodejs.git`
 
 Enable [user-env-compile](https://devcenter.heroku.com/articles/labs-user-env-compile):
 
-heroku labs:enable user-env-compile
+`heroku labs:enable user-env-compile`
 
 During deployment to Heroku, the production grunt task will be executed.  This will:
 
