@@ -34,7 +34,7 @@ process.on('uncaughtException', function(err) {
     console.log(err);
 });
 
-app.set('views', __dirname + '/express/views');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 app.use(express.static(__dirname + '/public'));
