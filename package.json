@@ -17,7 +17,7 @@
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-cli": "~0.1.6",
     "public": "https://github.com/awt/grunt-contrib-less/tarball/master",
-    "grunt-ember-templates": "~0.4.3",
+    "grunt-ember-templates": "~0.4.8",
     "grunt-contrib-watch": "~0.3.1",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-templater": "0.0.4",

@@ -99,7 +99,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    ember_templates: {
+    emberTemplates: {
       compile: {
         options: {
           templateName: function(sourceFile) {
@@ -165,6 +165,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['ember_templates', 'template:development', 'concat', 'less:development', 'generate_manifest']);
+  grunt.registerTask('default', ['emberTemplates', 'template:development', 'concat', 'less:development', 'generate_manifest']);
   grunt.registerTask('production', ['ember_templates', 'template:production', 'concat', 'uglify', 'less:production', 'generate_manifest']);
 };
